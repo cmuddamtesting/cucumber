@@ -4,7 +4,7 @@ node() {
 
     stage("Prepare Workspace") {
         cleanWs()
-        env.WORKSPACE_LOCAL = "C:\Program Files (x86)\Jenkins\workspace\xray"
+        env.WORKSPACE_LOCAL = "C:\\Program Files (x86)\\Jenkins\\workspace\\xray"
         env.BUILD_TIME = "20191216600"
         echo "Workspace set to:" + env.WORKSPACE_LOCAL
         echo "Build time:" + env.BUILD_TIME
