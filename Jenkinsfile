@@ -4,8 +4,8 @@ node() {
 
     stage("Prepare Workspace") {
         cleanWs()
-        env.WORKSPACE_LOCAL = "C:\\Program Files (x86)\\Jenkins\\workspace\\xray"
-        env.BUILD_TIME = "20191216600"
+        env.WORKSPACE_LOCAL = sh(returnStdout: true, script: 'pwd').trim()
+        env.BUILD_TIME = sh(returnStdout: true, script: 'date +%F-%T').trim()
         echo "Workspace set to:" + env.WORKSPACE_LOCAL
         echo "Build time:" + env.BUILD_TIME
     }
@@ -14,7 +14,7 @@ node() {
     }
     stage('Cucumber Tests') {
         withMaven(maven: 'maven35') {
-       
+            sh """
 			cd ${env.WORKSPACE_LOCAL}
 			mvn clean test
 		"""
@@ -28,7 +28,7 @@ node() {
 
 		def description = "[BUILD_URL|${env.BUILD_URL}]"
 		def labels = '["regression","automated_regression"]'
-		def environment = "DEV"
+		def environment = "TEST"
 		def testExecutionFieldId = 10007
 		def testEnvironmentFieldName = "customfield_10132"
 		def projectKey = "EAA"
@@ -52,5 +52,6 @@ node() {
 
 			echo info
 
-			step([%class%: 'XrayImportBuilder', endpointName: '/cucumber/multipart', importFilePath: 'target/cucumber.json', importInfo: info, inputInfoSwitcher: 'fileContent', serverInstance: xrayConnectorId])
-		}}
+			step([$class: 'XrayImportBuilder', endpointName: '/cucumber/multipart', importFilePath: 'target/cucumber.json', importInfo: info, inputInfoSwitcher: 'fileContent', serverInstance: xrayConnectorId])
+		}
+}
