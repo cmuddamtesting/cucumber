@@ -1,6 +1,6 @@
 node() {
 
-    def repoURL = 'https://github.com/gabrielstar/cucumber.git'
+    def repoURL = 'https://github.com/chandramuddam/cucumber.git'
 
     stage("Prepare Workspace") {
         cleanWs()
@@ -31,8 +31,8 @@ node() {
 		def environment = "DEV"
 		def testExecutionFieldId = 10007
 		def testEnvironmentFieldName = "customfield_10132"
-		def projectKey = "WOO"
-		def xrayConnectorId = '3ecdab2a-9ccb-4b99-99cb-2312e9135dc5'
+		def projectKey = "EAA"
+		def xrayConnectorId = 'c1d6994f-7d95-4ef4-8ad0-f31ce814df40'
 		def info = '''{
 				"fields": {
 					"project": {
