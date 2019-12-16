@@ -53,5 +53,4 @@ node() {
 			echo info
 
 			step([%class%: 'XrayImportBuilder', endpointName: '/cucumber/multipart', importFilePath: 'target/cucumber.json', importInfo: info, inputInfoSwitcher: 'fileContent', serverInstance: xrayConnectorId])
-		}
-}
+		}}
