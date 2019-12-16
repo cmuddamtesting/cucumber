@@ -4,8 +4,8 @@ node() {
 
     stage("Prepare Workspace") {
         cleanWs()
-        env.WORKSPACE_LOCAL = sh(returnStdout: true, script: 'pwd').trim()
-        env.BUILD_TIME = sh(returnStdout: true, script: 'date +%F-%T').trim()
+        env.WORKSPACE_LOCAL = "C:\Program Files (x86)\Jenkins\workspace\xray"
+        env.BUILD_TIME = "20191216600"
         echo "Workspace set to:" + env.WORKSPACE_LOCAL
         echo "Build time:" + env.BUILD_TIME
     }
@@ -14,7 +14,7 @@ node() {
     }
     stage('Cucumber Tests') {
         withMaven(maven: 'maven35') {
-            sh """
+       
 			cd ${env.WORKSPACE_LOCAL}
 			mvn clean test
 		"""
